@@ -359,22 +359,26 @@
 						transform: scale(1.08);
 					}
 
-					/* Цвета брендов при наведении на иконки */
-					#header nav a.fa-vk:hover:before {
-						background-color: #0077ff;
-						border-color: #0077ff;
+					/* Цвета брендов при наведении: фон кружка и цвет иконки */
+					#header nav ul li a.fa-vk:hover:before {
+						background-color: #0077ff !important;
+						border-color: #0077ff !important;
+						color: #fff !important;
 					}
-					#header nav a.fa-facebook:hover:before {
-						background-color: #1877f2;
-						border-color: #1877f2;
+					#header nav ul li a.fa-facebook:hover:before {
+						background-color: #1877f2 !important;
+						border-color: #1877f2 !important;
+						color: #fff !important;
 					}
-					#header nav a.fa-github:hover:before {
-						background-color: #24292e;
-						border-color: #24292e;
+					#header nav ul li a.fa-github:hover:before {
+						background-color: #24292e !important;
+						border-color: #24292e !important;
+						color: #fff !important;
 					}
-					#header nav a.fa-envelope-o:hover:before {
-						background-color: #ea4335;
-						border-color: #ea4335;
+					#header nav ul li a.fa-envelope-o:hover:before {
+						background-color: #ea4335 !important;
+						border-color: #ea4335 !important;
+						color: #fff !important;
 					}
 
 				#header nav a:active {
