@@ -20,7 +20,8 @@
 
 	body {
 		background: white;
-		overflow: hidden;
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 
 		body.loading * {
@@ -60,10 +61,10 @@
 		-o-animation: wrapper 3s forwards;
 		-ms-animation: wrapper 3s forwards;
 		animation: wrapper 3s forwards;
-		height: 100%;
+		min-height: 100vh;
 		left: 0;
 		opacity: 0;
-		position: fixed;
+		position: relative;
 		top: 0;
 		width: 100%;
 	}
@@ -136,22 +137,90 @@
 /* Main */
 
 	#main {
-		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
 		left: 0;
-		position: fixed;
+		padding: 2em 0;
+		position: relative;
 		text-align: center;
 		top: 0;
 		width: 100%;
 	}
 
-		#main:before {
-			content: '';
-			display: inline-block;
-			height: 100%;
-			margin-right: 0;
-			vertical-align: middle;
-			width: 1px;
-		}
+	/* Карточка контента: стекло, все секции внутри */
+	.content-card {
+		-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(12px);
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+		max-width: 42em;
+		padding: 2em 2.5em;
+		width: 90%;
+	}
+
+	.content-card .about,
+	.content-card .skills,
+	.content-card .projects {
+		margin: 1.5em 0 0 0;
+		text-align: left;
+	}
+
+	.content-card .about h2,
+	.content-card .skills h2,
+	.content-card .projects h2 {
+		font-size: 1.1em;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		margin: 0 0 0.5em 0;
+		opacity: 0.9;
+		text-transform: uppercase;
+	}
+
+	.content-card .about p {
+		font-size: 0.95em;
+		margin: 0;
+		opacity: 0.85;
+	}
+
+	.content-card .skill-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.content-card .skill-tags li {
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 999px;
+		font-size: 0.85em;
+		padding: 0.35em 0.9em;
+	}
+
+	.content-card .projects ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.content-card .projects li {
+		font-size: 0.95em;
+		margin: 0.5em 0 0 0;
+		opacity: 0.85;
+		padding-left: 1.2em;
+		position: relative;
+	}
+
+	.content-card .projects li:before {
+		content: '→';
+		left: 0;
+		position: absolute;
+	}
 
 /* Header */
 	@-moz-keyframes header { 0% { -moz-transform: translate3d(0,1em,0); -webkit-transform: translate3d(0,1em,0); -o-transform: translate3d(0,1em,0); -ms-transform: translate3d(0,1em,0); transform: translate3d(0,1em,0); opacity: 0; } 100% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); opacity: 1; } }
@@ -165,7 +234,7 @@
 	@-ms-keyframes nav-icons { 0% { -moz-transform: translate3d(0,1em,0); -webkit-transform: translate3d(0,1em,0); -o-transform: translate3d(0,1em,0); -ms-transform: translate3d(0,1em,0); transform: translate3d(0,1em,0); opacity: 0; } 100% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); opacity: 1; } }
 	@keyframes nav-icons { 0% { -moz-transform: translate3d(0,1em,0); -webkit-transform: translate3d(0,1em,0); -o-transform: translate3d(0,1em,0); -ms-transform: translate3d(0,1em,0); transform: translate3d(0,1em,0); opacity: 0; } 100% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); opacity: 1; } }
 
-	/* Блок заголовка с эффектом стекла (glassmorphism) */
+	/* Заголовок (имя и подзаголовок) */
 	#header {
 		-moz-animation: header 1s 2.25s forwards;
 		-webkit-animation: header 1s 2.25s forwards;
@@ -182,20 +251,10 @@
 		-o-transform: translate3d(0,0,0);
 		-ms-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
-		-webkit-backdrop-filter: blur(12px);
-		backdrop-filter: blur(12px);
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: 16px;
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 		cursor: default;
-		display: inline-block;
 		opacity: 0;
-		padding: 2em 2.5em;
 		position: relative;
 		text-align: center;
-		top: -1em;
-		vertical-align: middle;
-		width: 90%;
 	}
 
 		#header h1 {
@@ -207,15 +266,24 @@
 
 		#header p {
 			font-size: 1.25em;
-			margin: 0.75em 0 0.25em 0;
+			margin: 0.75em 0 0 0;
 			opacity: 0.75;
 		}
 
-		#header nav {
+		.content-card nav {
 			margin: 1.5em 0 0 0;
 		}
 
-			#header nav li {
+			.content-card nav ul {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.content-card nav li {
 				-moz-animation: nav-icons 0.5s ease-in-out forwards;
 				-webkit-animation: nav-icons 0.5s ease-in-out forwards;
 				-o-animation: nav-icons 0.5s ease-in-out forwards;
@@ -240,7 +308,7 @@
 				width: 5.35em;
 			}
 
-				#header nav li:nth-child(1) {
+				.content-card nav li:nth-child(1) {
 					-moz-animation-delay: 2.5s;
 					-webkit-animation-delay: 2.5s;
 					-o-animation-delay: 2.5s;
@@ -248,7 +316,7 @@
 					animation-delay: 2.5s;
 				}
 
-				#header nav li:nth-child(2) {
+				.content-card nav li:nth-child(2) {
 					-moz-animation-delay: 2.75s;
 					-webkit-animation-delay: 2.75s;
 					-o-animation-delay: 2.75s;
@@ -256,7 +324,7 @@
 					animation-delay: 2.75s;
 				}
 
-				#header nav li:nth-child(3) {
+				.content-card nav li:nth-child(3) {
 					-moz-animation-delay: 3s;
 					-webkit-animation-delay: 3s;
 					-o-animation-delay: 3s;
@@ -264,7 +332,7 @@
 					animation-delay: 3s;
 				}
 
-				#header nav li:nth-child(4) {
+				.content-card nav li:nth-child(4) {
 					-moz-animation-delay: 3.25s;
 					-webkit-animation-delay: 3.25s;
 					-o-animation-delay: 3.25s;
@@ -272,7 +340,7 @@
 					animation-delay: 3.25s;
 				}
 
-				#header nav li:nth-child(5) {
+				.content-card nav li:nth-child(5) {
 					-moz-animation-delay: 3.5s;
 					-webkit-animation-delay: 3.5s;
 					-o-animation-delay: 3.5s;
@@ -280,7 +348,7 @@
 					animation-delay: 3.5s;
 				}
 
-				#header nav li:nth-child(6) {
+				.content-card nav li:nth-child(6) {
 					-moz-animation-delay: 3.75s;
 					-webkit-animation-delay: 3.75s;
 					-o-animation-delay: 3.75s;
@@ -288,7 +356,7 @@
 					animation-delay: 3.75s;
 				}
 
-				#header nav li:nth-child(7) {
+				.content-card nav li:nth-child(7) {
 					-moz-animation-delay: 4s;
 					-webkit-animation-delay: 4s;
 					-o-animation-delay: 4s;
@@ -296,7 +364,7 @@
 					animation-delay: 4s;
 				}
 
-				#header nav li:nth-child(8) {
+				.content-card nav li:nth-child(8) {
 					-moz-animation-delay: 4.25s;
 					-webkit-animation-delay: 4.25s;
 					-o-animation-delay: 4.25s;
@@ -304,7 +372,7 @@
 					animation-delay: 4.25s;
 				}
 
-				#header nav li:nth-child(9) {
+				.content-card nav li:nth-child(9) {
 					-moz-animation-delay: 4.5s;
 					-webkit-animation-delay: 4.5s;
 					-o-animation-delay: 4.5s;
@@ -312,7 +380,7 @@
 					animation-delay: 4.5s;
 				}
 
-				#header nav li:nth-child(10) {
+				.content-card nav li:nth-child(10) {
 					-moz-animation-delay: 4.75s;
 					-webkit-animation-delay: 4.75s;
 					-o-animation-delay: 4.75s;
@@ -320,14 +388,14 @@
 					animation-delay: 4.75s;
 				}
 
-			#header nav a {
+			.content-card nav a {
 				-webkit-tap-highlight-color: transparent;
 				-webkit-touch-callout: none;
 				border: 0;
 				display: inline-block;
 			}
 
-				#header nav a:before {
+				.content-card nav a:before {
 					-moz-transition: all 0.25s ease-in-out;
 					-webkit-transition: all 0.25s ease-in-out;
 					-o-transition: all 0.25s ease-in-out;
@@ -345,11 +413,11 @@
 					width: 2.5em;
 				}
 
-				#header nav a:hover {
+				.content-card nav a:hover {
 					font-size: 1.1em;
 				}
 
-					#header nav a:hover:before {
+					.content-card nav a:hover:before {
 						background-color: rgba(255, 255, 255, 0.175);
 						color: white;
 						-moz-transform: scale(1.08);
@@ -360,38 +428,38 @@
 					}
 
 					/* Цвета брендов при наведении: фон кружка и цвет иконки */
-					#header nav ul li a.fa-vk:hover:before {
+					.content-card nav ul li a.fa-vk:hover:before {
 						background-color: #0077ff !important;
 						border-color: #0077ff !important;
 						color: #fff !important;
 					}
-					#header nav ul li a.fa-facebook:hover:before {
+					.content-card nav ul li a.fa-facebook:hover:before {
 						background-color: #1877f2 !important;
 						border-color: #1877f2 !important;
 						color: #fff !important;
 					}
-					#header nav ul li a.fa-github:hover:before {
+					.content-card nav ul li a.fa-github:hover:before {
 						background-color: #24292e !important;
 						border-color: #24292e !important;
 						color: #fff !important;
 					}
-					#header nav ul li a.fa-envelope-o:hover:before {
+					.content-card nav ul li a.fa-envelope-o:hover:before {
 						background-color: #ea4335 !important;
 						border-color: #ea4335 !important;
 						color: #fff !important;
 					}
 
-				#header nav a:active {
+				.content-card nav a:active {
 					font-size: 0.95em;
 					background: none;
 				}
 
-					#header nav a:active:before {
+					.content-card nav a:active:before {
 						background-color: rgba(255, 255, 255, 0.35);
 						color: white;
 					}
 
-				#header nav a span {
+				.content-card nav a span {
 					display: none;
 				}
 
@@ -408,7 +476,7 @@
 		height: 6em;
 		left: 0;
 		line-height: 8em;
-		position: absolute;
+		position: fixed;
 		text-align: center;
 		width: 100%;
 	}
