@@ -169,6 +169,10 @@
 		text-align: left;
 	}
 
+	.content-card .skills {
+		text-align: center;
+	}
+
 	.content-card .about h2,
 	.content-card .skills h2,
 	.content-card .projects h2 {
@@ -186,20 +190,27 @@
 		opacity: 0.85;
 	}
 
-	.content-card .skill-tags {
+	/* Стек в виде бейджей (shields.io, стиль for-the-badge) */
+	.content-card .skill-badges {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
 		gap: 0.5em;
-		list-style: none;
 		margin: 0;
-		padding: 0;
 	}
 
-	.content-card .skill-tags li {
-		background: rgba(255, 255, 255, 0.15);
-		border-radius: 999px;
-		font-size: 0.85em;
-		padding: 0.35em 0.9em;
+	.content-card .skill-badge {
+		display: inline-block;
+		height: 28px;
+		width: auto;
+		-moz-transition: opacity 0.2s ease;
+		-webkit-transition: opacity 0.2s ease;
+		transition: opacity 0.2s ease;
+	}
+
+	.content-card .skill-badge:hover {
+		opacity: 0.9;
 	}
 
 	.content-card .projects ul {
